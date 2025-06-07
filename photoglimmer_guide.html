@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+  <title>PhotoGlimmer Interactive User Guide | AI-Powered Lightweight Desktop Image Editor</title>
+  <meta name="description" content="Interactive guide to PhotoGlimmer,a lightweight desktop image editor that enhances lighting and exposure for people in photos offline.">
+
+  
+  <meta name="keywords" content="PhotoGlimmer, image editor, photo editing, linux AI photo editing, open source, exposure , defocus, github.io">
+
+  
+  <meta name="author" content="Rahul Singh">
+
+  <!-- Open Graph for social sharing (Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="PhotoGlimmer Interactive User Guide">
+  <meta property="og:description" content="Interactive guide to PhotoGlimmer — an open-source, AI-powered desltop tool to manually illuminate people in photos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codecliff.github.io/photoglimmer/photoglimmer_guide.html">
+  <meta property="og:image" content="https://codecliff.github.io/photoglimmer/thumbnail.png"> 
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PhotoGlimmer Interactive User Guide">
+  <meta name="twitter:description" content="Official guide for PhotoGlimmer — an open-source AI tool to manually illuminate people in photos.">
+  <meta name="twitter:image" content="https://codecliff.github.io/photoglimmer/thumbnail.png"> <!-- Optional -->
+
+  
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  
+  <link rel="canonical" href="https://codecliff.github.io/photoglimmer/photoglimmer_guide">
+
+  
+
+
+
+
+    <link rel="stylesheet" href="helpcss.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            justify-content: space-between; /* Push header/footer to ends */
+            align-items: center;
+            min-height: 100vh;
+            /*background-color: #f0f0f0; */
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            padding: 20px 0; /* Add some vertical padding */
+        }
+
+        .header-area, .footer-area {
+            width: 90%;
+            max-width: 1000px; /* Match container max-width */
+            /*text-align: center;*/
+            padding: 15px 0;
+            margin-bottom: 20px; /* Space between header and image */
+            list-style-type:none;
+        }
+        
+
+        /*
+
+        .header-area h1 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 2.2em;
+        } 
+        */
+
+     
+    
+
+        .header-area p {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+
+        .container {
+            position: relative;
+            max-width: 90%; /* Adjust as needed */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0; /* Prevent image container from shrinking */
+        }
+
+        #screenshot {
+            display: block;
+            width: 100%;
+            height: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Styles for the magnified view */
+        #magnified-view {
+            position: absolute;
+            width: 150px; /* Size of the magnified window */
+            height: 150px; /* Size of the magnified window */
+            border: 2px solid #007bff;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden;
+            pointer-events: none; /* Allows mouse events to pass through to areas */
+            opacity: 0;
+            transform: scale(0.8); /* Start slightly smaller */
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            z-index: 100; /* On top of everything */
+            background-repeat: no-repeat;
+            background-image: url('screenshot2.jpg'); /* The original image as background */
+        }
+        #magnified-view.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Styles for the tooltip */
+        #info-tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            line-height: 1.4;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            pointer-events: none; /* Ensures mouse events pass through */
+            opacity: 0;
+            transform: translateY(10px); /* Start slightly below */
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            z-index: 101; /* On top of magnified view */
+        }
+        #info-tooltip.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #info-tooltip h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #4CAF50; /* A nice green for titles */
+            font-size: 1.1em;
+        }
+        #info-tooltip p {
+            margin: 0;
+        }
+
+        /* Styles for the hotspot highlight */
+        #hotspot-highlight {
+            position: absolute;
+            border: 3px solid #00ffff; /* Neon blue */
+            border-radius: 8px; /* Circular edges */
+            box-shadow: 0 0 10px 3px #00ffff; /* Neon glow */
+            pointer-events: none;
+            z-index: 99; /* Just below the magnified view */
+            opacity: 0;
+            transition: opacity 0.15s ease-out;
+        }
+        #hotspot-highlight.active {
+            opacity: 1;
+        }
+
+        /* Image map styles (optional, for default hover feedback) */
+        area:hover {
+            outline: none; /* Remove default outline */
+            cursor: help;
+        }
+
+        .footer-area {
+            margin-top: 30px; /* Space between image and footer */
+            font-size: 0.85em;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .footer-area .browser-info {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #888;
+        }
+        footer ul {
+            list-style-type: none;   
+            padding-left: 0;         
+            margin: 0;               
+        }
+    </style>
+</head>
+<body>
+   
+
+    <center>   
+       
+
+
+    <div class="container">
+        <img id="screenshot" src="screenshot3.jpg" width="1850" height="1000" usemap="#screenshot-map" alt="GUI Screenshot">
+        <map name="screenshot-map" id="screenshot-map">
+            </map>
+        <div id="magnified-view"></div>
+        <div id="info-tooltip"></div>
+        <div id="hotspot-highlight"></div> 
+    </div>
+    <p style="text-align: right; font-size:x-small;">Image &copy; 
+        <a href="https://flic.kr/p/fnQ6EL"  target="_blank">
+            Newtown grafitti @ Flickr </a> @ Flickr .  License  CC BY-NC-SA 2.0 </p> 
+
+    <!-- 
+            <center>   
+        <img src="appicon.png" alt="PhotoGlimmer Icon"  width="64" height="64" />
+        <br/>
+        </center> 
+    -->   
+    
+    
+    <div class="menu">
+
+        <img src="appicon.png" alt="PhotoGlimmer Icon"  width="32" height="32"  style="float: left;"/>
+    
+        <a href="https://github.com/codecliff/PhotoGlimmer">Home</a> |
+        <a href="photoglimmer_help.html">Text Guide</a> |
+        <a href="photoglimmer_guide.html">Interactive Guide</a> 
+    </div>     
+
+     <!-- header class="header-area" -->
+        
+        <h1>PhotoGlimmer User Guide (Interactive) </h1>
+        <h3>Hover your mouse over image elements to understand them better.</h3>
+    <!--/header -->
+    </center>
+
+    <footer class="footer-area">
+        <p class="note">&copy; Rahul Singh </p>
+        <div class="browser-info">
+            <p><strong>Minimum Browser Requirements:</strong></p>
+            <p>This interactive guide utilizes modern web technologies (HTML5, CSS3, JavaScript ES6+). 
+                For optimal performance and display, please use a modern web browser such as:</p>
+            <ul >
+                <li>Google Chrome (version 60 or higher)</li>
+                <li>Mozilla Firefox (version 55 or higher)</li>
+                <li>Microsoft Edge (version 16 or higher)</li>
+                <li>Apple Safari (version 11 or higher)</li>
+                <li>Opera (version 47 or higher)</li>
+            </ul>
+            <p>Ensure JavaScript is enabled in your browser settings.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hotspot data loaded from Python, neatly formatted as JSON
+        const hotspotData = [
+    {
+        "id": "image_loader",
+        "shape": "rectangle",
+        "coords": [12, 66, 140, 140],
+        "title": "Image Browse Button",
+        "description": "Browse for images",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 76,
+            "center_y": 103
+        }
+    },
+    {
+        "id": "layer_selector",
+        "shape": "rectangle",
+        "coords": [123, 80, 273, 143],
+        "title": "Background Foreground Selector",
+        "description": "Select whether you want to tweak background or people in the image",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 198,
+            "center_y": 111
+        }
+    },
+    {
+        "id": "layer_editing_area",
+        "shape": "rectangle",
+        "coords": [29, 141, 296, 350],
+        "title": "Image Editing",
+        "description": "Change brightness and saturation of selected layer. Most important area.",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 162,
+            "center_y": 245
+        }
+    },
+    {
+        "id": "segmask_area",
+        "shape": "rectangle",
+        "coords": [29, 355, 280, 466],
+        "title": "AI Segment Mask",
+        "description": "Shows where AI has found people in the image. You can change this by drawing rectangles on image.",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 154,
+            "center_y": 416
+        }
+    },
+    {
+        "id": "segment_tweak_area",
+        "shape": "rectangle",
+        "coords": [29, 466, 296, 600],
+        "title": "Segmentation Tweak Area",
+        "description": "<ol> <li>Threshold: Grow or shrink the foreground selection, \
+             <li>Edge Blur: Blur selection edges for better blending with background.  \
+             <li> BG Blur : Blur background for a portrait effect </ol>" ,
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 162,
+            "center_y": 538
+        }
+    },
+    {
+        "id": "extra_feature_area",
+        "shape": "rectangle",
+        "coords": [29, 605, 296, 720],
+        "title": "Extra Features",
+        "description": "<ol><li>Preserve: Decide how much change you want to get through to final image.\
+             <li>Denoise: Subtle smoothing. Can be slow .\
+             <li>RESET Button <b> &lt;| </b>resetes EVERYTHING .",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 162,
+            "center_y": 671
+        }
+    },
+    {
+        "id": "image_saver",
+        "shape": "rectangle",
+        "coords": [29, 734, 296, 800],
+        "title": "Image Save Button",
+        "description": "Save altered image",
+        "magnification": {
+            "factor": 3.0,
+            "center_x": 162,
+            "center_y": 779
+        }
+    },
+
+    {
+        "id": "status_area",
+        "shape": "rectangle",
+        "coords": [29, 890, 500, 980],
+        "title": "Status Area",
+        "description": "Shows some helpful hints about the current operation",
+        "magnification": {
+            "factor": 2.0,
+            "center_x": 162,
+            "center_y": 950
+        }
+    },
+    
+    {
+        "id": "image_area",
+        "shape": "rectangle",
+        "coords": [348, 88, 1800, 984],
+        "title": "Image Display",
+        "description": " <ul>\
+            <li>You can draw rectangles to override the AI.<br />  \
+            -- Hide or delete rectangles with H / Del keys. </li>  \
+            <li>Press Right mouse key to glimpse original image </li> \
+            </ul>",
+        "magnification": {
+            "factor": 0.25,
+            "center_x": 1093,
+            "center_y": 536
+        }
+    },
+
+    
+
+];
+
+        const screenshotImg = document.getElementById('screenshot');
+        const screenshotMap = document.getElementById('screenshot-map');
+        const magnifiedView = document.getElementById('magnified-view');
+        const infoTooltip = document.getElementById('info-tooltip');
+        const hotspotHighlight = document.getElementById('hotspot-highlight'); // Get the highlight element
+
+        let currentActiveId = null; // To track which hotspot is active
+        let mouseMoveTimeout; // To debounce mousemove for tooltip positioning
+
+        function createAreaElements() {
+            hotspotData.forEach(hotspot => {
+                const area = document.createElement('area');
+                area.setAttribute('alt', hotspot.title);
+                area.setAttribute('title', hotspot.title); // Basic tooltip for accessibility
+                area.setAttribute('href', '#');
+                area.setAttribute('shape', hotspot.shape);
+                area.setAttribute('coords', hotspot.coords.join(','));
+                area.setAttribute('id', `area-${hotspot.id}`);
+
+                area.addEventListener('mouseover', (e) => handleMouseOver(e, hotspot));
+                area.addEventListener('mousemove', (e) => handleMouseMove(e, hotspot)); // To update tooltip position
+                area.addEventListener('mouseout', handleMouseOut);
+
+                screenshotMap.appendChild(area);
+            });
+        }
+
+        function handleMouseOver(event, hotspot) {
+            // Check if another hotspot is already active or if this one is already active
+            if (currentActiveId !== null && currentActiveId !== hotspot.id) {
+                // If moving directly from one hotspot to another, hide previous before showing new
+                handleMouseOut();
+            }
+            if (currentActiveId === hotspot.id) return; // Already active
+            currentActiveId = hotspot.id;
+
+            // Get bounding rectangle of the image for calculations
+            const imgRect = screenshotImg.getBoundingClientRect();
+            const imgNaturalWidth = screenshotImg.naturalWidth;
+            const imgNaturalHeight = screenshotImg.naturalHeight;
+            const imgDisplayWidth = screenshotImg.width;
+            const imgDisplayHeight = screenshotImg.height;
+
+            const scaleX = imgDisplayWidth / imgNaturalWidth;
+            const scaleY = imgDisplayHeight / imgNaturalHeight;
+
+            // Magnified View Logic
+            const factor = hotspot.magnification.factor;
+            const centerX = hotspot.magnification.center_x;
+            const centerY = hotspot.magnification.center_y;
+
+            const magSize = 150; // Must match CSS width/height
+            const halfMagSize = magSize / 2;
+
+            const magViewRelX = (centerX * scaleX) - halfMagSize;
+            const magViewRelY = (centerY * scaleY) - halfMagSize;
+
+            const offsetX = 30; // Example offset
+            const offsetY = 30;
+
+            magnifiedView.style.left = `${magViewRelX + offsetX}px`;
+            magnifiedView.style.top = `${magViewRelY + offsetY}px`;
+
+            const bgPosX = -(centerX * factor) + halfMagSize;
+            const bgPosY = -(centerY * factor) + halfMagSize;
+
+            magnifiedView.style.backgroundSize = `${imgNaturalWidth * factor}px ${imgNaturalHeight * factor}px`;
+            magnifiedView.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+
+            magnifiedView.classList.add('active');
+
+
+            // Info Tooltip Logic
+            infoTooltip.innerHTML =  `<h3>${hotspot.title}</h3><p>${hotspot.description}</p>`;
+            infoTooltip.classList.add('active');
+
+            // Initial positioning of tooltip (will be refined by mousemove)
+            updateTooltipPosition(event);
+
+            // Hotspot Highlight Logic
+            const [x1, y1, x2, y2] = hotspot.coords;
+            const highlightX = x1 * scaleX;
+            const highlightY = y1 * scaleY;
+            const highlightWidth = (x2 - x1) * scaleX;
+            const highlightHeight = (y2 - y1) * scaleY;
+
+            hotspotHighlight.style.left = `${highlightX}px`;
+            hotspotHighlight.style.top = `${highlightY}px`;
+            hotspotHighlight.style.width = `${highlightWidth}px`;
+            hotspotHighlight.style.height = `${highlightHeight}px`;
+            hotspotHighlight.classList.add('active');
+        }
+
+        function handleMouseMove(event, hotspot) {
+            // Debounce the mousemove to avoid too many updates, just for tooltip
+            clearTimeout(mouseMoveTimeout);
+            mouseMoveTimeout = setTimeout(() => {
+                updateTooltipPosition(event);
+            }, 10); // Update every 10ms
+        }
+
+        function updateTooltipPosition(event) {
+            if (!infoTooltip.classList.contains('active')) return; // Only update if visible
+
+            const tooltipPadding = 15; // Padding from window edge
+            const cursorOffset = 25; // Offset from cursor
+
+            let tooltipLeft = event.clientX + cursorOffset;
+            let tooltipTop = event.clientY + cursorOffset;
+
+            // Adjust if tooltip goes off right edge
+            if (tooltipLeft + infoTooltip.offsetWidth > window.innerWidth - tooltipPadding) {
+                tooltipLeft = event.clientX - infoTooltip.offsetWidth - cursorOffset; // To the left
+            }
+            // Adjust if tooltip goes off bottom edge
+            if (tooltipTop + infoTooltip.offsetHeight > window.innerHeight - tooltipPadding) {
+                tooltipTop = event.clientY - infoTooltip.offsetHeight - cursorOffset; // Above cursor
+            }
+            // Adjust if tooltip goes off left edge (should not happen if cursorOffset is positive)
+            if (tooltipLeft < tooltipPadding) {
+                tooltipLeft = tooltipPadding;
+            }
+            // Adjust if tooltip goes off top edge (should not happen if cursorOffset is positive)
+            if (tooltipTop < tooltipPadding) {
+                tooltipTop = tooltipPadding;
+            }
+
+            infoTooltip.style.left = `${tooltipLeft}px`;
+            infoTooltip.style.top = `${tooltipTop}px`;
+        }
+
+
+        function handleMouseOut() {
+            magnifiedView.classList.remove('active');
+            infoTooltip.classList.remove('active');
+            hotspotHighlight.classList.remove('active'); // Hide the highlight
+            clearTimeout(mouseMoveTimeout); // Clear any pending mousemove updates
+            currentActiveId = null;
+        }
+
+        // Initial setup
+        screenshotImg.onload = createAreaElements; // Ensure image is loaded before creating areas
+
+        // If image is already loaded (e.g., cached), call immediately
+        if (screenshotImg.complete) {
+            createAreaElements();
+        }
+    </script>
+</body>
+</html>
+
+
+

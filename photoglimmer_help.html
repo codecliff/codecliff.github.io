@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>PhotoGlimmer User Guide | AI-Powered Lightweight Desktop Image Editor</title>
+  <meta name="description" content="Learn how to use PhotoGlimmer, an open source AI-powered desktop image editor that enhances lighting and exposure for people in photos offline.">
+
+  
+  <meta name="keywords" content="PhotoGlimmer, image editor, photo editing, AI photo editor, open source, exposure enhancement, background blur, github.io, user guide, Linux, windows, appimage, qt">
+
+  <!-- Author -->
+  <meta name="author" content="Rahul Singh">
+
+  <!-- Open Graph for social sharing (Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="PhotoGlimmer User Guide">
+  <meta property="og:description" content="Step-by-step guide to using PhotoGlimmer — an open-source, AI-powered tool to manually illuminate people in photos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codecliff.github.io/photoglimmer/photoglimmer_help.html">
+  <meta property="og:image" content="https://codecliff.github.io/photoglimmer/thumbnail.png"> <!-- Optional preview image -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PhotoGlimmer User Guide">
+  <meta name="twitter:description" content="Official guide for PhotoGlimmer — an open-source AI tool for manually illuminate people in photos.">
+  <meta name="twitter:image" content="https://codecliff.github.io/photoglimmer/thumbnail.png"> <!-- Optional -->
+
+  
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  
+  <link rel="canonical" href="https://codecliff.github.io/photoglimmer/photoglimmer_help">
+
+  <!-- End of meta tags --> 
+
+
+
+  <link rel="stylesheet" href="helpcss.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    h2 {
+      padding-left: 10px;
+      background-color: rgb(129, 146, 221);
+      color: aliceblue;      
+      max-width: 500px;
+      
+    }
+    /*
+    h2::before{
+      content: "💡🖌";
+      
+    }
+    */
+  </style>
+  
+</head>
+<body>
+
+  <center>
+    <div class="menu">
+
+     
+      <img src="appicon.png" alt="PhotoGlimmer Icon"  width="32" height="32"  style="float: left;  "/>
+    
+        <a href="https://github.com/codecliff/PhotoGlimmer">Home</a> |
+        <a href="photoglimmer_help.html">Text Guide</a> |
+        <a href="#faq">FAQ</a> |
+        <a href="photoglimmer_guide.html">Interactive Guide</a>
+    </div> 
+
+     
+    <!-- img src="appicon.png" alt="PhotoGlimmer Icon"  width="64" height="64" / -->
+    
+  
+  
+        
+  <h1>PhotoGlimmer User Guide (Text)</h1> 
+
+</center>
+  <p><strong>PhotoGlimmer</strong> is a free and open-source image editor distributed under the <strong>LGPL license</strong>. It is designed to enhance lighting on people or pets in photos with complex or stunning backgrounds, ensuring that the subjects look just as good as their surroundings.</p>
+
+  <h2>Key Features</h2>
+  <ul>
+    <li>Automatic detection and enhancement of people/pets using AI.</li>
+    <li>Manual selection and adjustment using rectangular regions.</li>
+    <li>Sliders to control exposure, brightness, saturation, blending, etc.</li>
+    <li>Supports toggling between foreground and background editing.</li>
+    <li>Clipboard and foreground export.</li>
+    <li>No GPU requirement</li>
+    <li>Curve based brightness tweaking (optional, experimental)</li>
+  </ul>
+
+
+  <hr/>
+
+  
+    <table class="note" id="screenshots">
+      <tr>
+        <td> <a href="screenshot1.jpg" target="_blank"> <img src="screenshot1.jpg" 
+          width="300", height="166", alt="photoglimmer screenshot 0" /> </a></td>
+        <td> <a href="screenshot2.jpg" target="_blank"> <img src="screenshot2.jpg" 
+          width="300", height="166", alt="photoglimmer screenshot 1" /> </a></td>
+        <td> <a href="screenshot3.jpg"  target="_blank">   <img src="screenshot3.jpg" width="300", height="166", alt="photoglimmer screenshot 1" /> </a> </td>
+         </tr>
+      
+      <td colspan="3" class="faded-text-row">
+            <p>
+              <code>Photoglimmer Screenshots. </code> <code><a href="#imgsources"> Image credits </a> </code>
+            </p>
+        </td>
+       
+    </table>
+  
+
+  <hr/>
+
+  <h2>Getting Started</h2>
+  <ol>
+    <li>Click the <strong>Browse</strong> button or press <code>Ctrl+O</code> to select an image.</li>
+    <ol>
+    <li>The image opens in the editor. Any people or pets detected will appear as a grayscale segmentation mask in the left panel.</li>
+    <li>Use the <strong>Threshold</strong> slider to adjust the automatic detection if necessary.</li>
+    <li> 💡🖌 Adjust <strong>Brightness</strong> and <strong>Saturation</strong> sliders to enhance the selected area.</li>
+    <li>Use <strong>Edge Blur</strong> to improve blending between the foreground and background.</li>
+    <li>Toggle between editing <strong>Background</strong> and <strong>Foreground</strong> using the <strong>BG/FG</strong> switch at the top.</li>
+    <li>Use <strong>BG Blur</strong> to blur the background for aesthetic effects.</li>
+    <li>Adjust the <strong>Preserve</strong> slider to control the overall extent of changes applied.</li>
+    </ol>
+    <li>Click the <strong>Save</strong> button or press <code>Ctrl+S</code> to export your final image.</li>
+    <li>To reset all changes at any time, click the <strong>⏮</strong> button.</li>
+    <li>Hold down the <strong>right mouse button</strong> over the image to temporarily view the original photo.</li>
+  </ol>
+
+  <h2>Enhancements</h2>
+  <ul>
+    <li>Draw <strong>rectangular selections</strong> over people or body parts to apply targeted enhancements.</li>
+    <li>Rectangles guide the AI to focus analysis on specific areas of the image.</li>
+    <li>Open <strong>Tools > Preferences</strong> to configure application behavior.</li>
+    <li> 💡🖌 You can switch from sliders to <strong>curves</strong> for advanced control (experimental).</li>
+    <li>Apply noise reduction with the <strong>Denoise</strong> button (may impact performance).</li>
+    <li>Use <strong>Tools > FG to clipboard</strong> to copy the selected foreground and paste it into another editor.</li>
+  </ul>
+
+  <h2>Working with Rectangles</h2>
+  <ul>
+    <li>Click and drag on the image to draw multiple rectangles for selective enhancement.</li>
+    <li>Click on a rectangle to move it around the image.</li>
+    <li>Resize a rectangle by dragging its <strong>edges</strong> (corners are not resizable).</li>
+    <li>To <strong>hide</strong> all rectangles, click on the image and press <code>H</code>. Press <code>H</code> again to show them.</li>
+    <li>To <strong>delete</strong> a rectangle, select it and press the <code>Del</code> key.</li>
+  </ul>
+
+  <div class="note">
+    Note: When rectangles are hidden, you cannot draw new ones. Press <code>H</code> to unhide them.
+  </div>
+
+  <h2>Keyboard Shortcuts</h2>
+  <ul>
+    <li><code>Ctrl+O</code> – Open image</li>
+    <li><code>Ctrl+S</code> – Save image</li>
+    <li><code>H</code> – Toggle visibility of rectangles</li>
+    <li><code>Del</code> – Delete selected rectangle</li>
+    <li><code>Right Mouse Button</code> – View original image temporarily</li>
+  </ul>
+
+  <h2>License</h2>
+  <p>PhotoGlimmer is licensed under the <strong>LGPL</strong> (Lesser General Public License). 
+    You are free to use, modify, and distribute the software as per the terms of this license.
+  You will need to credit the original developer and link back to the PhotoGlimmer project</p>
+
+
+
+
+<hr width="25%"/>
+
+<h1 id="faq">Frequently Asked Questions (FAQ)</h1>
+
+<center>
+    <div class="menu">      
+    
+        <a href="#faq_general">General FAQ</a> |
+        <a href="#faq_usage">Usage FAQ</a> |
+        <a href="#faq_installation">Installation FAQ</a> |
+        <a href="#faq_developer">Dev FAQ</a>
+
+    </div> 
+</center>    
+
+<h2 faq_general>General FAQ: </h2>
+
+
+<h3 class="q">Q: What is PhotoGlimmer?</h3>
+<p>A: PhotoGlimmer is an AI powered open-source image editing tool for enhancing the 
+  lighting and exposure of people or pets in photos 
+  — with a simple slider-based manual control on the process.</p>
+
+<h3 class="q">Q: Does PhotoGlimmer AI work offline ?</h3>
+<p>A: Yes, The program you install is fully self-contained and does not use any online connection</p>
+
+<h3 class="q">Q: What is the file size of  PhotoGlimmer installer?</h3>
+<p>A: PhotoGlimmer installer is about 250 MBs in size. However, being a self-contained package, 
+  the install size is larger at about 900MBs</p>
+
+<h3 class="q">Q: Does  PhotoGlimmer require a GPU ?</h3>
+<p>A: No, PhotoGlimmer is totally CPU. But you better have 4 GB RAM or above on your system </p>
+
+
+<h3 class="q">Q: How does PhotoGlimmer detect people or pets in an image?</h3>
+<p>A: PhotoGlimmer uses built-in AI to automatically detect people or pets in your photos.
+   It shows a grayscale segmentation mask in the left panel as soon as the image is opened. 
+   You can further control the detection level. </p>
+
+
+
+
+
+
+<h2 id="faq_usage">Usage FAQ: </h2>
+
+<h3 class="q">Q: What if the automatic detection is not accurate?</h3>
+<p>A: You can adjust the detection using the <strong>Threshold</strong> slider to grow or shrink
+   the AI-generated mask. You can also draw rectangles to manually guide or override the detection.</p>
+
+<h3 class="q">Q: Can I manually choose which parts of the photo to enhance?</h3>
+<p>A: Absolutely! Just draw rectangular selections over the image using your mouse. 
+  This allows you to focus on specific people, pets, or even just body parts like faces or hands.</p>
+
+<h3 class="q">Q: 💡🖌 How do I adjust exposure or color?</h3>
+<p>A: Use the <strong>Brightness</strong> and <strong>Saturation</strong> sliders to fine-tune the look. For more advanced control, you can switch to curve-based adjustments via <strong>Tools > Preferences</strong>.</p>
+
+<h3 class="q">Q: What’s the “Edge Blur” slider for?</h3>
+<p>A: If increasing brightness creates a harsh edge between the enhanced area and the background, the <strong>Edge Blur</strong> slider helps smooth out the transition for a more natural look.</p>
+
+<h3 class="q">Q: Can I edit the background separately?</h3>
+<p>A: Yes! Use the <strong>BG/FG</strong> toggle at the top of the interface to switch between editing the background or the foreground.</p>
+
+<h3 class="q">Q: What do the "BG Blur" and "Preserve" sliders do?</h3>
+<p><strong>BG Blur</strong> applies a soft blur to the background, helping your subject stand out. <strong>Preserve</strong> controls the overall intensity of changes applied to the image, keeping things subtle or dramatic — your call!</p>
+
+<h3 class="q">Q: How do I reset everything?</h3>
+<p>A: Just click the <strong>⏮</strong> button to reset all edits and return to the original image.</p>
+
+<h3 class="q">Q: Can I quickly view the original image while editing?</h3>
+<p>A: Yes. Press and hold the <strong>right mouse button</strong> over the image to temporarily show the unedited version.</p>
+
+<h3 class="q">Q: What’s the deal with the rectangles?</h3>
+<p>Rectangles help you control where the AI focuses. You can draw multiple rectangles, move them, resize them using the edges (not corners), and delete them with the <code>Del</code> key. Press <code>H</code> to hide or show them. Just remember: you can’t add new ones while they’re hidden.</p>
+
+<h3 class="q">Q: What does the “Denoise” button do?</h3>
+<p>A: It applies a subtle noise reduction filter to the final image. It can improve image quality, but may slow down performance a bit.</p>
+
+<h3 class="q">Q: What is <code>Tooles>FG to clipboard</code>? menu for?</h3>
+<p>A: Us it if you want to copy people in the foreground onto a more feature rich editor like GIMP . 
+  Copies the unedited version.</p>
+
+<h3 class="q">Q: Is PhotoGlimmer free to use?</h3>
+<p>A: Yes! PhotoGlimmer is free and open-source, licensed under the <strong>LGPL</strong>. Feel free to use, modify, and share it. Respect the license</p>
+
+<h3 class="q">Q: If the editor is open source, will the edited image will also be in public domain?</h3>
+<p>A: No. The LGPL license conditions apply only to someone using this application's code to create a new application. </p>
+
+
+
+<h2 id="faq_developer">Curious Human FAQ: </h2>
+
+<h3 class="q">Q: What's under the hood?</h3>
+<p>A: Mediapipe, Opencv , Pyside2 , Qt5.5 , and recently a good dose of help from Gemini, openAI and Perplexity</p>
+
+<h3 class="q">Q: Why such an old version of Mediapipe?</h3>
+<p>A: To keep the file size in check. </p>
+
+<h3 class="q">Q: Why are there so few comments in the code?</h3>
+
+<p>A: Because I have also cobbled together a decent comment remover for Python. It's here - 
+  <a href="https://github.com/codecliff/NoCommentsPython" target="_blank" > NoCommentsPython </a> &#128520; 
+  <br/> Actually , the current code is quite a mess. All this started as a mere script.
+   I plan to put all the comments back in after I have made the code modular proper. 
+</p>
+
+
+
+<hr width="25%" />
+
+
+<h2 id="faq_installation">Installation FAQ: </h2>
+
+<h3 class="q">Q: How do I download installers for the latest version  ?</h3>
+<p>A: Installers for the newest versions can be found near the top of 
+   <a href="https://github.com/codecliff/PhotoGlimmer/">Phogtoglimmer's github page </a></p>
+
+
+<h3 class="q">Q: Which  installer to choose ?</h3>
+<p>A: Appimage for All linux flavours. .deb for perfect integration with Ubuntu, .msi for Windows  </p>   
+
+<h3 class="q">Q: How do I download installers for an older version  ?</h3>
+<p>A: at this point there are not many older versions. But all installers can be 
+  found  under Assets section for each release on   
+   <a href="https://github.com/codecliff/PhotoGlimmer/releases">Phogtoglimmer's Release page </a> on github </p>
+
+<h3 class="q">Q: What if the installer does not work ?</h3>
+<p>A: That happens rarely. In that case run the installation from command line. 
+  Install whatever missing requirement it reports and you are all set. </p>   
+  
+
+
+
+
+<hr width="25%" />
+
+
+<h2>The Epilogue</h2>
+
+<p>
+PhotoGlimmer is a photo editor with one objective-  To make it easy for photography enthusiasts 
+ like me to highlight people in the foreground without requiring astronomical level of image editing skills; 
+ at the same time it should also give you the ability and satisfaction of manual editing. 
+Standing in a mountain's shadow or enjoying a setting sun,  we deserve to look just as good as the scenery behind
+ us. 
+ </p>
+ <p>
+ Here's a shot at doing that withougt using an advanced operation on a complex image editor.
+  And having a lot more manual control than a phone app.
+
+</p>
+<p>
+I hope you will find it as useful as I have, and have as much fun using it.  
+</p>
+<p>
+So go ahead. Brighten faces, blur backgrounds, and if things go wrong, there’s always the ⏮ button to start again. 
+</p>
+<p>
+psst! Somethimes, lowering the brightness and color values also works very well.  
+</p>
+
+
+
+<hr width="25%"/>
+<br/>
+
+<p class="note">&copy; Rahul Singh </p>
+
+<p id="imgsources">
+  Image credits: Flickr CC images [ 
+
+  <a href="https://www.flickr.com/photos/joshuatreenp/albums/" target="_blank">joshua national park</a> |
+  <a href="https://flic.kr/p/deEgH5" target="_blank">
+    skittledog</a> | 
+  <a href="https://flic.kr/p/fnQ6EL" target="_blank">Newtown grafitti</a> 
+  ] [<a  href="#screenshots">Back to Screenshots</a>  ]
+</p> 
+
+</body>
+</html>
+
+

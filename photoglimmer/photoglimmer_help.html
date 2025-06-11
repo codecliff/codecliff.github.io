@@ -86,12 +86,13 @@
 
   <h2>Key Features</h2>
   <ul>
-    <li>Automatic detection and enhancement of people/pets using AI.</li>
-    <li>Manual selection and adjustment using rectangular regions.</li>
+    <li>Automatic detection of people/pets using AI.</li>
+    <li>Improve or restrict AI detection by selecting regions.</li>
     <li>Sliders to control exposure, brightness, saturation, blending, etc.</li>
-    <li>Supports toggling between foreground and background editing.</li>
+    <li>Supports toggling between foreground (people) and background editing.</li>
     <li>Clipboard and foreground export.</li>
     <li>No GPU requirement</li>
+    <li>Can handles large images efficiently</li>
     <li>Curve based brightness tweaking (optional, experimental)</li>
   </ul>
 
@@ -121,7 +122,7 @@
 
   <h2>Getting Started</h2>
   <ol>
-    <li>Click the <strong>Browse</strong> button or press <code>Ctrl+O</code> to select an image.</li>
+    <li>Click the <strong>Browse</strong> button or press <code>Ctrl+O</code> to open an image.</li>
     <ol>
     <li>The image opens in the editor. Any people or pets detected will appear as a grayscale segmentation mask in the left panel.</li>
     <li>Use the <strong>Threshold</strong> slider to adjust the automatic detection if necessary.</li>
@@ -163,7 +164,7 @@
   <ul>
     <li><code>Ctrl+O</code> – Open image</li>
     <li><code>Ctrl+S</code> – Save image</li>
-    <li><code>H</code> – Toggle visibility of rectangles</li>
+    <li><code>H</code> – Toggle visibility of rectangles (click on the image first)</li>
     <li><code>Del</code> – Delete selected rectangle</li>
     <li><code>Right Mouse Button</code> – View original image temporarily</li>
   </ul>
@@ -246,13 +247,27 @@
 <p>A: Just click the <strong>⏮</strong> button to reset all edits and return to the original image.</p>
 
 <h3 class="q">Q: Can I quickly view the original image while editing?</h3>
-<p>A: Yes. Press and hold the <strong>right mouse button</strong> over the image to temporarily show the unedited version.</p>
+<p>A: Yes. Press and hold the <strong>right mouse button</strong> over the image to glimpse at the unedited version.</p>
 
 <h3 class="q">Q: What’s the deal with the rectangles?</h3>
-<p>Rectangles help you control where the AI focuses. You can draw multiple rectangles, move them, resize them using the edges (not corners), and delete them with the <code>Del</code> key. Press <code>H</code> to hide or show them. Just remember: you can’t add new ones while they’re hidden.</p>
+<p>Rectangles help you control where the AI focuses. 
+  You can draw multiple rectangles, move them, resize them using the edges (not corners), 
+  and delete them with the <code>Del</code> key. 
+  Press <code>H</code> to hide or show them. 
+  Just remember: you can’t add new ones while they’re hidden.</p>
+
+<h3 class="q">Q: Pressing <code>H</code> or <code>DEL</code> keys does not change rectangles!</h3>
+<p>A: Make the image area active by clicking somewhere on it. After this, the keys should work.</p>
+
+<h3 class="q">Q: I cannot draw the  rectangles!</h3>
+<p>A: Might be because they are hidden. That disables drawing of new ones. Click on the image once and press the H key to make them visible again. </p>
+
+<h3 class="q">Q: I cannot resize the  rectangles!</h3>
+<p>A: Might be because you are trying to reize useing corner handles. Try the handles (little boxes) at the midpoint of an edge. </p>
+
 
 <h3 class="q">Q: What does the “Denoise” button do?</h3>
-<p>A: It applies a subtle noise reduction filter to the final image. It can improve image quality, but may slow down performance a bit.</p>
+<p>A: It applies a subtle noise reduction filter to the final image. It can improve image quality, but may slow down performance quite a bit.</p>
 
 <h3 class="q">Q: What is <code>Tooles>FG to clipboard</code>? menu for?</h3>
 <p>A: Us it if you want to copy people in the foreground onto a more feature rich editor like GIMP . 
@@ -261,7 +276,7 @@
 <h3 class="q">Q: Is PhotoGlimmer free to use?</h3>
 <p>A: Yes! PhotoGlimmer is free and open-source, licensed under the <strong>LGPL</strong>. Feel free to use, modify, and share it. Respect the license</p>
 
-<h3 class="q">Q: If the editor is open source, will the edited image will also be in public domain?</h3>
+<h3 class="q">Q: If the editor is open source, will the edited image also be in public domain?</h3>
 <p>A: No. The LGPL license conditions apply only to someone using this application's code to create a new application. </p>
 
 
@@ -316,14 +331,14 @@
 <h2>The Epilogue</h2>
 
 <p>
-PhotoGlimmer is a photo editor with one objective-  To make it easy for photography enthusiasts 
+PhotoGlimmer is a photo editor with one objective- to make it easy for photography enthusiasts 
  like me to highlight people in the foreground without requiring astronomical level of image editing skills; 
  at the same time it should also give you the ability and satisfaction of manual editing. 
 Standing in a mountain's shadow or enjoying a setting sun,  we deserve to look just as good as the scenery behind
  us. 
  </p>
  <p>
- Here's a shot at doing that withougt using an advanced operation on a complex image editor.
+ Here's a shot at doing that without using an advanced operation on a complex image editor.
   And having a lot more manual control than a phone app.
 
 </p>
@@ -334,7 +349,7 @@ I hope you will find it as useful as I have, and have as much fun using it.
 So go ahead. Brighten faces, blur backgrounds, and if things go wrong, there’s always the ⏮ button to start again. 
 </p>
 <p>
-psst! Somethimes, lowering the brightness and color values also works very well.  
+psst! Somethimes, lowering the brightness and color  values also works very well.  
 </p>
 
 
